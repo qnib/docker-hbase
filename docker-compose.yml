@@ -1,0 +1,8 @@
+hbase:
+    hostname: hbase
+    image: qnib/hbase
+    # build: .
+    ports:
+    - 60000:60000
+    - 60010:60010
+    - 60030:60030
