@@ -2,11 +2,14 @@
 FROM qnib/terminal:light
 MAINTAINER "Christian Kniep <christian@qnib.org>"
 
-ADD etc/yum.repos.d/cdh.repo /etc/yum.repos.d/
-RUN yum install -y hbase-master
-RUN mkdir -p /data/{zookeeper,hbase} && \
-    chown -R hbase:hbase /data/hbase/ 
-ADD etc/zookeeper/conf/zoo.cfg /etc/zookeeper/conf/zoo.cfg
+RUN yum install -y automake \
+                   gnuplot \
+                   java-1.7.0-openjdk.x86_64 \
+                   python-devel \
+                   unzip
+RUN curl -Ls -o /tmp/hbase-0.94.27.tar.gz http://apache.org/dist/hbase/hbase-0.94.27/hbase-0.94.27.tar.gz && \
+   tar xzf /tmp/hbase-*gz && rm /tmp/hbase-*gz && \
+   mv hbase-* /opt/hbase
 ADD etc/hbase/conf/hbase-site.xml /etc/hbase/conf/hbase-site.xml
 ADD etc/supervisord.d/hbase.ini /etc/supervisord.d/
 ADD opt/qnib/hbase/bin/start_hbase.sh /opt/qnib/hbase/bin/start_hbase.sh
