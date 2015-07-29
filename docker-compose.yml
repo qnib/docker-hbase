@@ -1,7 +1,20 @@
+consul:
+    hostname: consul
+    image: qnib/consul
+    environment:
+    - DC_NAME=dc1
+    ports:
+    - "8500:8500"
+    dns: 127.0.0.1
+
 hbase:
     hostname: hbase
     image: qnib/hbase
     # build: .
+    environment:
+    - DC_NAME=dc1
+    links:
+    - consul:consul
     ports:
     - 60000:60000
     - 60010:60010

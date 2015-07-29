@@ -13,3 +13,5 @@ RUN curl -Ls -o /tmp/hbase-0.94.27.tar.gz http://apache.org/dist/hbase/hbase-0.9
 ADD etc/hbase/conf/hbase-site.xml /etc/hbase/conf/hbase-site.xml
 ADD etc/supervisord.d/hbase.ini /etc/supervisord.d/
 ADD opt/qnib/hbase/bin/start_hbase.sh /opt/qnib/hbase/bin/start_hbase.sh
+VOLUME ["/data/hbase/"]
+ADD etc/consul.d/check_hbase.json /etc/consul.d/check_hbase.json
