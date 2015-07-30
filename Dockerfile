@@ -1,15 +1,8 @@
-###### grafana images
-FROM qnib/terminal:light
-MAINTAINER "Christian Kniep <christian@qnib.org>"
+### HBase Image
+FROM qnib/zookeeper
 
-RUN yum install -y automake \
-                   gnuplot \
-                   java-1.7.0-openjdk.x86_64 \
-                   python-devel \
-                   unzip
-RUN curl -Ls -o /tmp/hbase-0.94.27.tar.gz http://apache.org/dist/hbase/hbase-0.94.27/hbase-0.94.27.tar.gz && \
-   tar xzf /tmp/hbase-*gz && rm /tmp/hbase-*gz && \
-   mv hbase-* /opt/hbase
+ENV HBASE_VER 1.1.1
+RUN curl -fLs http://apache.org/dist/hbase/${HBASE_VER}/hbase-${HBASE_VER}-bin.tar.gz | tar xzf - -C /opt && mv /opt/hbase-${HBASE_VER} /opt/hbase
 ADD etc/hbase/conf/hbase-site.xml /etc/hbase/conf/hbase-site.xml
 ADD etc/supervisord.d/hbase.ini /etc/supervisord.d/
 ADD opt/qnib/hbase/bin/start_hbase.sh /opt/qnib/hbase/bin/start_hbase.sh

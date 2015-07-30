@@ -7,12 +7,14 @@ consul:
     - "8500:8500"
     dns: 127.0.0.1
 
+
 hbase:
     hostname: hbase
-    image: qnib/hbase
+    image: qnib/hbase:1.1.1
     # build: .
     environment:
     - DC_NAME=dc1
+    - HBASE_MANAGES_ZK=false
     links:
     - consul:consul
     ports:
