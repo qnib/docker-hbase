@@ -1,5 +1,5 @@
 ###### grafana images
-FROM qnib/terminal:light
+FROM qnib/terminal
 MAINTAINER "Christian Kniep <christian@qnib.org>"
 
 RUN yum install -y automake \
