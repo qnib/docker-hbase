@@ -1,9 +1,12 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
-
+  <property>
+    <name>hbase.cluster.distributed</name>
+    <value>true</value>
+  </property>
   <property>
     <name>hbase.rootdir</name>
-    <value>file:////data/hbase/hbase${user.name}/hbase</value>
+    <value>hdfs://localhost:8030/hbase</value>
   </property>
   <property>
     <name>hbase.zookeeper.dns.interface</name>
