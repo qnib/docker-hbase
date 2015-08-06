@@ -7,5 +7,8 @@ RUN curl -fsL http://www.interior-dsgn.com/apache/hbase/${HBASE_VER}/hbase-${HBA
 ADD etc/hbase/conf/hbase-site.xml /etc/hbase/conf/hbase-site.xml
 ADD etc/supervisord.d/hbase.ini /etc/supervisord.d/
 ADD opt/qnib/hbase/bin/start_hbase.sh /opt/qnib/hbase/bin/start_hbase.sh
-VOLUME ["/data/hbase/"]
 ADD etc/consul.d/check_hbase.json /etc/consul.d/check_hbase.json
+ADD etc/bashrc.hbase /etc/bashrc.hbase
+RUN echo "source /etc/bashrc.hbase" >> /etc/bashrc && \
+    echo "tail -f /var/log/supervisor/hbase.log" >> /root/.bash_history
+
