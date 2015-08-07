@@ -1,7 +1,7 @@
 #!/bin/bash
 source /etc/bashrc
 
-mkdir /opt/hbase/logs/
+mkdir -p /opt/hbase/logs/
 chown -R hadoop /opt/hbase/logs/
 echo "127.0.0.1 localhost $(hostname)" > /etc/hosts
 
