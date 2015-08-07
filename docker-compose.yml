@@ -7,9 +7,23 @@ consul:
     - "8500:8500"
     dns: 127.0.0.1
 
+zookeeper0:
+    hostname: zookeeper0
+    dns: 127.0.0.1
+    image: qnib/zookeeper
+    # build: .
+    environment:
+    - DC_NAME=dc1
+    - MYID=1
+    links:
+    - consul:consul
+    ports:
+    - 2181:2181
+    privileged: true
 
 hbase:
     hostname: hbase
+    dns: 127.0.0.1
     image: qnib/hbase:1.1.1
     # build: .
     environment:

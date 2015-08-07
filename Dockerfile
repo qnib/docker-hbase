@@ -1,5 +1,5 @@
 ### HBase Image
-FROM qnib/zookeeper
+FROM qnib/hadoop
 
 ENV HBASE_VER 1.1.1
 RUN curl -fLs http://apache.org/dist/hbase/${HBASE_VER}/hbase-${HBASE_VER}-bin.tar.gz | tar xzf - -C /opt && mv /opt/hbase-${HBASE_VER} /opt/hbase

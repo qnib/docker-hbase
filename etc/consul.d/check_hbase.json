@@ -6,7 +6,7 @@
         "tags": [],
         "port": 60010,
         "checks": [{
-            "script": "curl -s http://localhost:60010/master-status|grep -o '>HBase.*' || echo 'Endpoint http://localhost:60010/master-status/ not available'",
+            "script": "echo 'Check endpoint localhost:60010/master-status/';curl -s http://localhost:60010/master-status|grep -o '>HBase.*'",
             "interval": "10s"
         }]
     }

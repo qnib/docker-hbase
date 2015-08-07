@@ -6,6 +6,10 @@
   </property>
   <property>
     <name>zookeeper.znode.parent</name>
+    <value>/hbase</value>
+  </property>
+  <property>
+    <name>hbase.zookeeper.quorum</name>
     <value>zookeeper.service.consul</value>
   </property>
   <property>
