@@ -1,7 +1,7 @@
 ###### Docker Image
 FROM qnib/hadoop
 
-ENV HBASE_VER=0.98.13 \
+ENV HBASE_VER=0.98.15 \
     HBASE_EXTRA="-hadoop2"
 RUN curl -fsL http://www.interior-dsgn.com/apache/hbase/${HBASE_VER}/hbase-${HBASE_VER}${HBASE_EXTRA}-bin.tar.gz | tar xzf - -C /opt && mv /opt/hbase-${HBASE_VER}${HBASE_EXTRA} /opt/hbase
 ADD etc/hbase/conf/hbase-site.xml /etc/hbase/conf/hbase-site.xml
