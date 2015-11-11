@@ -1,7 +1,21 @@
 #!/bin/bash
-## stolen from: https://github.com/PeterGrace/opentsdb-docker/blob/master/start_hbase.sh
-export JAVA_HOME=/usr/lib/jvm/jre-1.7.0-openjdk/
-trap "echo stopping hbase;/usr/lib/hbase/bin/hbase-daemon.sh master stop>>/var/log/hbase-stop.log 2>&1; exit" HUP INT TERM EXIT
+source /etc/bashrc
+
+mkdir -p /opt/hbase/logs/
+chown -R hadoop /opt/hbase/logs/
+echo "127.0.0.1 localhost $(hostname)" > /etc/hosts
+
+function check_hdfs {
+    cnt_hdfs=$(curl -s localhost:8500/v1/catalog/service/hdfs|grep -c "\"Node\":\"$(hostname)\"")
+    if [ ${cnt_hdfs} -ne 1 ];then
+        echo "[start_hbase] No running 'hdfs service yet, sleep 5 sec'"
+        sleep 5
+        check_hdfs
+    fi
+}
+
+check_hdfs
+sleep 10
 echo "starting hbase"
 /usr/lib/hbase/bin/hbase-daemon.sh start master &
 while true
