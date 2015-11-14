@@ -4,9 +4,9 @@
         "id": "hbase",
         "name": "hbase",
         "tags": [],
-        "port": 60010,
+        "port": 16010,
         "checks": [{
-            "script": "echo 'Check endpoint localhost:60010/master-status/';curl -s http://localhost:60010/master-status|grep -o '>HBase.*'",
+            "script": "echo 'Check endpoint localhost:16010/master-status/';curl -s http://localhost:16010/master-status|grep -o '>HBase.*'",
             "interval": "10s"
         }]
     }
