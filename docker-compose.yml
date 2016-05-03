@@ -1,5 +1,6 @@
 consul:
     hostname: consul
+    container_name: consul
     image: qnib/consul
     environment:
     - DC_NAME=dc1
@@ -11,10 +12,11 @@ consul:
 
 hbase:
     hostname: hbase
+    container_name: hbase
     image: qnib/hbase
-    # build: .
     environment:
     - DC_NAME=dc1
+    - HADOOP_HDFS_NAMENODE=true
     links:
     - consul:consul
     ports:
